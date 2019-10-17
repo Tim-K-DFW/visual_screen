@@ -1,4 +1,4 @@
-apply_filters = function(dd, input) {
+apply_filters = function(dd, input, labs, sectors) {
     temp_x = dd[[labs[input$x_axis, 2]]]
     dd$zs_x = (temp_x - mean(temp_x)) / sd(temp_x)
     temp_y = dd[[labs[input$y_axis, 2]]]
@@ -34,11 +34,12 @@ apply_filters = function(dd, input) {
             temp_range = input$range_y_selected / 100
         else    
             temp_range = input$range_y_selected
+    res = res[tt >= temp_range[1] & tt <= temp_range[2], ]
 
-    res[tt >= temp_range[1] & tt <= temp_range[2], ]
+    res
 }
 
-apply_filters_for_sliders = function(dd, input) {
+apply_filters_for_sliders = function(dd, input, labs, sectors) {
     temp_x = dd[[labs[input$x_axis, 2]]]
     dd$zs_x = (temp_x - mean(temp_x)) / sd(temp_x)
     temp_y = dd[[labs[input$y_axis, 2]]]
@@ -56,7 +57,7 @@ apply_filters_for_sliders = function(dd, input) {
     res
 }
 
-slider_dynamic = function(axis, boundary, input) {
+slider_dynamic = function(axis, boundary, input, labs) {
     # creates slider object for either axis with units and range depending on data
     # selected for that axis
     # step sizes set arbitrarily but can change as needed... or paratemrize them

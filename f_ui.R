@@ -8,18 +8,18 @@ ui  =  fluidPage(
             checkboxInput("show_tickers", "Show tickers", value = FALSE),
             
             checkboxGroupInput("sectors", "Sectors", 
-                choices = sectors, selected = sectors),
+                choices = SECTORS, selected = SECTORS),
             actionLink('select_all_sectors', 'Select All'),
 
             selectInput("x_axis", "X axis", 
-                choices = lab_map,
+                choices = LAB_MAP,
                 selected = '5'
             ),
             uiOutput('range_x_axis'),
             checkboxInput("ex_outliers_x", "Remove 2sd outliers", value = TRUE),
 
             selectInput("y_axis", "Y axis",
-                choices = lab_map,
+                choices = LAB_MAP,
                 selected = '1'
             ),
             uiOutput('range_y_axis'),
@@ -32,8 +32,7 @@ ui  =  fluidPage(
         ),
         mainPanel(
             div(
-                em('Source: FactSet; as of close 10/17/2019; includes 1989 ITOT constituents as of 10/10/2019, sector classificaions by iShares;
-                    excludes Financials and stocks with market cap under $100mm or revenue LTM or LTM-3 years under $5mm or those where data not available.')
+                em(textOutput('caption'))
             ),            
             div(
                 style = "position:relative",

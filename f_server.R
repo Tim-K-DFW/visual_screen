@@ -1,6 +1,6 @@
 server  =  function(input, output, session){
   output$plot2 = renderPlot({
-    dd2 = apply_filters(dd, input, labs, sectors)
+    dd2 = apply_filters(dd, input)
     
     pl = ggplot(dd2, aes_string(
       x = glue('`{labs[input$x_axis,]$colmame}`'),
@@ -39,13 +39,13 @@ server  =  function(input, output, session){
   )
   
   output$range_x_axis = renderUI({
-    dd2 = apply_filters_for_sliders(dd, input, labs, sectors)
+    dd2 = apply_filters_for_sliders(dd, input)
     boundary = range(dd2[[labs[input$x_axis, 2]]])
     slider_dynamic('x', boundary, input, labs)
   })
   
   output$range_y_axis = renderUI({
-    dd2 = apply_filters_for_sliders(dd, input, labs, sectors)
+    dd2 = apply_filters_for_sliders(dd, input)
     boundary = range(dd2[[labs[input$y_axis, 2]]])
     slider_dynamic('y', boundary, input, labs)
   })

@@ -1,6 +1,10 @@
+# ==========================================================
+# prep data, all loaded to global scope
+
 dd = data.frame(read_excel('data.xlsx', sheet = 'data for R'))
 
-# the following can be made to be read from YAML file or automated
+# the following cap be made to be read from YAML file or automated
+
 dd$`EV.revenue` = round(dd$`EV.revenue`, 2)
 dd$`CFO.rev` = round(dd$`CFO.rev`, 4)
 dd$`REVG.3` = round(dd$`REVG.3`, 4)

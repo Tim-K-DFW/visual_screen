@@ -1,6 +1,6 @@
 ui  =  fluidPage(
   tags$head(HTML("<title>Valuation map</title>")),  
-  titlePanel(title = h2("Valuation map", align="left")),
+  titlePanel(title = h2('"Valuation map"', align="left")),
   sidebarLayout(
         sidebarPanel(
             width = 3,

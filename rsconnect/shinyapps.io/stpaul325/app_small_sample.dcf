@@ -5,6 +5,6 @@ account: stpaul325
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 1342925
-bundleId: 2509942
+bundleId: 2510172
 url: https://stpaul325.shinyapps.io/app_small_sample/
-when: 1571352716.56455
+when: 1571362068.95961

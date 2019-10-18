@@ -1,4 +1,4 @@
-apply_filters = function(dd, input, labs, sectors) {
+apply_filters = function(dd, input) {
     temp_x = dd[[labs[input$x_axis, 2]]]
     dd$zs_x = (temp_x - mean(temp_x)) / sd(temp_x)
     temp_y = dd[[labs[input$y_axis, 2]]]
@@ -39,7 +39,7 @@ apply_filters = function(dd, input, labs, sectors) {
     res
 }
 
-apply_filters_for_sliders = function(dd, input, labs, sectors) {
+apply_filters_for_sliders = function(dd, input) {
     temp_x = dd[[labs[input$x_axis, 2]]]
     dd$zs_x = (temp_x - mean(temp_x)) / sd(temp_x)
     temp_y = dd[[labs[input$y_axis, 2]]]

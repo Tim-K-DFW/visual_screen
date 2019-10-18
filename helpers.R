@@ -1,10 +1,11 @@
 apply_filters = function(dd, input) {
-    temp_x = dd[[labs[input$x_axis, 2]]]
-    dd$zs_x = (temp_x - mean(temp_x)) / sd(temp_x)
-    temp_y = dd[[labs[input$y_axis, 2]]]
-    dd$zs_y = (temp_y - mean(temp_y)) / sd(temp_y)
+    # will remove NA, e.g. when ROE and other "rare" metrics selected
+    res = dd[complete.cases(dd),]
 
-    res = dd
+    temp_x = res[[labs[input$x_axis, 2]]]
+    res$zs_x = (temp_x - mean(temp_x)) / sd(temp_x)
+    temp_y = res[[labs[input$y_axis, 2]]]
+    res$zs_y = (temp_y - mean(temp_y)) / sd(temp_y)
 
     if(input$ex_outliers_x)
         res = subset(res, abs(zs_x) < 2)
@@ -40,11 +41,12 @@ apply_filters = function(dd, input) {
 }
 
 apply_filters_for_sliders = function(dd, input) {
-    temp_x = dd[[labs[input$x_axis, 2]]]
-    dd$zs_x = (temp_x - mean(temp_x)) / sd(temp_x)
-    temp_y = dd[[labs[input$y_axis, 2]]]
-    dd$zs_y = (temp_y - mean(temp_y)) / sd(temp_y)
-    res = dd
+    res = dd[complete.cases(dd),]
+
+    temp_x = res[[labs[input$x_axis, 2]]]
+    res$zs_x = (temp_x - mean(temp_x)) / sd(temp_x)
+    temp_y = res[[labs[input$y_axis, 2]]]
+    res$zs_y = (temp_y - mean(temp_y)) / sd(temp_y)
 
     if(input$ex_outliers_x)
         res = subset(res, abs(zs_x) < 2)

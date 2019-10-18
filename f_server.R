@@ -35,7 +35,7 @@ server  =  function(input, output, session){
     
     pl
   },
-  height = 600, width = 900
+  height = 800, width = 1200
   )
   
   output$range_x_axis = renderUI({
@@ -82,6 +82,7 @@ server  =  function(input, output, session){
                        <b> Mkt cap: </b>{format(round(point$market_cap, 1), nsmall = 1, big.mark = ',')}<br/>
                        <b> CFO/Rev: </b>{round(point$`CFO.rev` * 100, 2)}%<br/>
                        <b> EV/Rev: </b>{round(point$`EV.revenue`, 1)}x<br/>
+                       <b> ROE LTM: </b>{round(point$`ROE.LTM` * 100, 2)}%<br/>
                        <b> EV/LTM CFO: </b>{round(point$`EV.CFO`, 1)}x<br/>")))
     )
   })

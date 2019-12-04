@@ -6,6 +6,7 @@ UPDATED = as.data.frame(read_excel('data.xlsx', sheet = 'data - live', range = '
 DD = data.frame(read_excel('data.xlsx', sheet = 'data - live', range = 'a3:o2409'))
 DD = subset(DD, Rev_LTM > 5 & Rev_LTM_minus_3 > 5 & market_cap > 100)
 
+
 # the following cap be made to be read from YAML file or automated
 
 DD$insider_ownerhip = round(DD$insider_ownerhip, 4)
@@ -16,7 +17,6 @@ DD$EV_over_CFO = round(DD$EV_over_CFO, 2)
 DD$ROE_LTM = round(DD$ROE_LTM, 4)
 DD$short_interest = round(DD$short_interest, 4)
 DD$insider_ownerhip = round(DD$insider_ownerhip, 4)
-
 
 SECTORS = as.character(1:length(unique(DD$sector)))
 names(SECTORS) = unique(DD$sector)

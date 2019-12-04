@@ -1,24 +1,31 @@
 # ==========================================================
 # prep data, all loaded to global scope
 
-dd = data.frame(read_excel('data.xlsx', sheet = 'data for R'))
+UPDATED = as.data.frame(read_excel('data.xlsx', sheet = 'data - live', range = 'e1', col_names = F, col_types = 'text', .name_repair = 'minimal'))[1,1]
+
+DD = data.frame(read_excel('data.xlsx', sheet = 'data - live', range = 'a3:o2409'))
+DD = subset(DD, Rev_LTM > 5 & Rev_LTM_minus_3 > 5 & market_cap > 100)
 
 # the following cap be made to be read from YAML file or automated
 
-dd$`EV.revenue` = round(dd$`EV.revenue`, 2)
-dd$`CFO.rev` = round(dd$`CFO.rev`, 4)
-dd$`REVG.3` = round(dd$`REVG.3`, 4)
-dd$`EV.CFO` = round(dd$`EV.CFO`, 2)
-dd$`ROE.LTM` = round(dd$`ROE.LTM`, 4)
+DD$insider_ownerhip = round(DD$insider_ownerhip, 4)
+DD$EV_over_Rev = round(DD$EV_over_Rev, 2)
+DD$CFO_over_Rev = round(DD$CFO_over_Rev, 4)
+DD$rev_growth_3yr = round(DD$rev_growth_3yr, 4)
+DD$EV_over_CFO = round(DD$EV_over_CFO, 2)
+DD$ROE_LTM = round(DD$ROE_LTM, 4)
+DD$short_interest = round(DD$short_interest, 4)
+DD$insider_ownerhip = round(DD$insider_ownerhip, 4)
 
-sectors = as.character(1:length(unique(dd$sector)))
-names(sectors) = unique(dd$sector)
 
-labs = data.frame(list(
-    label = c('VALUATION: EV / LTM Revenue', 'VALUATION: EV / LTM CFO', 'QUALITY: LTM CFO margin',
-        'GROWTH: 3-year revenue growth (ann.)', 'QUALITY: LTM Return on Avg Equity'),
-    colmame = colnames(dd)[5:9],
-    unit = c('x', 'x', '%', '%', '%'))
+SECTORS = as.character(1:length(unique(DD$sector)))
+names(SECTORS) = unique(DD$sector)
+
+LABS = data.frame(list(
+    label = c('VALUATION: EV / LTM Revenue', 'VALUATION: EV / LTM CFO', 'QUALITY: LTM CFO margin', 
+        'QUALITY: LTM Return on Avg Equity', 'GROWTH: 3-year Rev CAGR', 'TECH: Short interest, % of float', 'TECH: % Insider ownership', 'SIZE: Market cap, $mm'),
+    colmame = colnames(DD)[4:11],
+    unit = c('x', 'x', '%', '%', '%', '%', '%', 'x'))
 )
-lab_map = rownames(labs)
-names(lab_map) = labs$label
+LAB_MAP = rownames(LABS)
+names(LAB_MAP) = LABS$label

@@ -1,4 +1,4 @@
-*Live on [val-map.frclabs.com](http://val-map.frclabs.com)*
+*Decomissioned in November 2020*
 # Poor man's Tableau for stocks
 
 #### Business case
